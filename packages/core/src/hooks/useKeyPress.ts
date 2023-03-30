@@ -46,7 +46,6 @@ export default (keyCode: KeyCode | null = null, options: UseKeyPressOptions = { 
   useEffect(() => {
     if (keyCode !== null) {
       const downHandler = (event: KeyboardEvent) => {
-
         modifierPressed.current = event.ctrlKey || event.metaKey || event.shiftKey;
 
         if (!modifierPressed.current && isInputDOMNode(event)) {
@@ -69,7 +68,7 @@ export default (keyCode: KeyCode | null = null, options: UseKeyPressOptions = { 
 
         if (isMatchingKey(keyCodes, pressedKeys.current, true)) {
           setKeyPressed(false);
-          pressedKeys.current.clear();
+          pressedKeys.current.delete(event[keyOrCode]);
         } else {
           pressedKeys.current.delete(event[keyOrCode]);
         }
